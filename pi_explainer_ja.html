@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビットコイン × フィジカルインターネット — 構造的対比（AI × 形式検証）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'] },
+                    colors: {
+                        btc: { 50:'#fffbeb',100:'#fef3c7',500:'#f59e0b',600:'#d97706',700:'#b45309' },
+                        pi: { 50:'#eff6ff',100:'#dbeafe',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',900:'#1e3a8a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color:#f8fafc; color:#0f172a; }
+        .card-shadow { box-shadow:0 4px 20px -2px rgba(15,23,42,0.05); }
+    </style>
+</head>
+<body class="antialiased selection:bg-pi-500 selection:text-white">
+
+    <!-- Top Action Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200 px-4 py-2.5">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="bg-slate-900 text-white text-xs font-bold px-2 py-0.5 rounded">VISUAL MAPPING</span>
+                <span class="text-xs font-bold text-slate-600">ビットコイン × フィジカルインターネット</span>
+            </div>
+            <button onclick="window.print()" class="inline-flex items-center space-x-1 text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white px-3 py-1.5 rounded-lg transition-colors cursor-pointer">
+                <i class="ph ph-printer"></i><span>PDF / 印刷</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-10">
+
+        <!-- Hero -->
+        <header class="text-center space-y-2">
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                国家に依存しない<span class="text-btc-600">通貨</span>から、主幹事に依存しない<span class="text-pi-600">物流</span>へ。
+            </h1>
+            <p class="text-sm sm:text-base font-bold text-slate-500">
+                中心命題：<span class="text-slate-900 underline decoration-pi-500 decoration-2">中央の調整者への依存を減らすことが、ネットワークの拡張性を高める。</span>
+            </p>
+        </header>
+
+        <!-- Core idea -->
+        <section class="bg-white rounded-2xl p-6 card-shadow border border-slate-200">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 text-center">
+                まず結論 — なぜAIが必要で、何が目的で<span class="text-rose-500">ない</span>のか
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto mb-5">
+                <p class="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                    AIは<span class="text-rose-600">主役ではない</span>。
+                    <span class="text-pi-700 underline decoration-pi-500 decoration-2">形式検証が土台</span>であり、
+                    AIはその土台を大規模に使えるようにする実現技術。
+                </p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-2">
+                <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-3.5 border border-slate-200">
+                    <span class="w-7 h-7 rounded-full bg-slate-900 text-white text-sm font-bold flex items-center justify-center shrink-0">1</span>
+                    <div>
+                        <div class="font-bold text-slate-900 text-sm">拡張とは、すべての判断を一人の調整者に通さないこと</div>
+                        <p class="text-xs sm:text-sm text-slate-600">フィジカルインターネットを拡張するには、特定の主幹事が企業間のあらゆる判断を毎回引き受ける必要がない構造にする。</p>
+                    </div>
+                </div>
+                <div class="flex justify-center"><i class="ph-bold ph-caret-down text-slate-300"></i></div>
+                <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-3.5 border border-slate-200">
+                    <span class="w-7 h-7 rounded-full bg-slate-900 text-white text-sm font-bold flex items-center justify-center shrink-0">2</span>
+                    <div>
+                        <div class="font-bold text-slate-900 text-sm">代わりに、独立した検証に置き換える</div>
+                        <p class="text-xs sm:text-sm text-slate-600">各社が共通の条件に照らして、自分で判断を検証する。中央の審判は置かない。</p>
+                    </div>
+                </div>
+                <div class="flex justify-center"><i class="ph-bold ph-caret-down text-slate-300"></i></div>
+                <div class="flex items-start gap-3 bg-slate-50 rounded-xl p-3.5 border border-slate-200">
+                    <span class="w-7 h-7 rounded-full bg-slate-900 text-white text-sm font-bold flex items-center justify-center shrink-0">3</span>
+                    <div>
+                        <div class="font-bold text-slate-900 text-sm">土台は形式検証 — ただし専門家以外には使いにくい</div>
+                        <p class="text-xs sm:text-sm text-slate-600">形式検証は、企業ごとにルールが違っても、明示された条件に判断が合うかを厳密に確かめられる。しかし、変化する業務要件を形式仕様へ落とし込むには、専門性と継続的な作業が要る。</p>
+                    </div>
+                </div>
+                <div class="flex justify-center"><i class="ph-bold ph-caret-down text-pi-400"></i></div>
+                <div class="flex items-start gap-3 bg-pi-50 rounded-xl p-3.5 border-2 border-pi-500/40">
+                    <span class="w-7 h-7 rounded-full bg-pi-600 text-white text-sm font-bold flex items-center justify-center shrink-0">4</span>
+                    <div>
+                        <div class="font-bold text-pi-900 text-sm">だからAIが実務上の必須になる — 主役ではなく実現役として</div>
+                        <p class="text-xs sm:text-sm text-slate-700">参加企業が増えるたびに、異なる条件の整理・更新・整合性確認が必要になり、人手や固定的なソフトでは追いつかない。AIがその準備を補助することで、形式検証を実際の物流で使えるようにする。これは実装・運用上の必要性であり、数学的に証明されたものではない。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-3xl mx-auto">
+                <div class="flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2 text-xs sm:text-sm">
+                    <i class="ph-bold ph-x-circle text-rose-500 text-lg shrink-0"></i>
+                    <span class="text-slate-700"><strong>よくある見方：</strong>「AIで配送を最適化する」</span>
+                </div>
+                <div class="flex items-center gap-2 bg-pi-50 border border-pi-300 rounded-lg px-3 py-2 text-xs sm:text-sm">
+                    <i class="ph-bold ph-check-circle text-pi-600 text-lg shrink-0"></i>
+                    <span class="text-slate-900"><strong>ここでの主張：</strong>AIが検証可能な協調を大規模に運用可能にする</span>
+                </div>
+            </div>
+            <p class="mt-3 text-center text-xs text-slate-500 italic max-w-3xl mx-auto">
+                ここで扱うのはAIの一つの役割 — 形式検証を使えるようにすること。物流最適化におけるAIの価値を否定するものではなく、ここで示す役割とは別の仕事というだけ。
+            </p>
+
+            <p class="mt-4 text-center text-xs text-slate-500 max-w-3xl mx-auto">
+                <strong class="text-slate-600">なぜビットコインと比べるのか？</strong> 中央の調整者ではなく、共通ルールと独立した検証がネットワークの土台になり得る理由を、直感的に示すため。（仕組みは異なり、対比の限界は後述。）
+            </p>
+        </section>
+
+        <!-- Diagram 1 -->
+        <section class="bg-white rounded-2xl p-6 card-shadow border border-slate-200">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 text-center">
+                なぜ比較するのか — ネットワーク構造の共通する転換（トポロジーの類似性）
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-11 gap-4 items-center">
+                <div class="md:col-span-5 bg-slate-50 rounded-xl p-5 border border-slate-200 flex flex-col items-center text-center">
+                    <span class="text-xs font-bold bg-slate-200 text-slate-700 px-2.5 py-0.5 rounded-full mb-2">従来：中央集権型（ハブ＆スポーク）</span>
+                    <div class="font-bold text-slate-800 text-sm mb-3">中央の処理・調整能力が成長の上限になる</div>
+                    <svg class="w-48 h-36 my-1" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="100" y1="75" x2="40" y2="30" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+                        <line x1="100" y1="75" x2="160" y2="30" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+                        <line x1="100" y1="75" x2="30" y2="110" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+                        <line x1="100" y1="75" x2="170" y2="110" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+                        <line x1="100" y1="75" x2="100" y2="135" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+                        <circle cx="40" cy="30" r="10" fill="#cbd5e1"/>
+                        <circle cx="160" cy="30" r="10" fill="#cbd5e1"/>
+                        <circle cx="30" cy="110" r="10" fill="#cbd5e1"/>
+                        <circle cx="170" cy="110" r="10" fill="#cbd5e1"/>
+                        <circle cx="100" cy="135" r="10" fill="#cbd5e1"/>
+                        <circle cx="100" cy="75" r="24" fill="#ef4444" fill-opacity="0.15" stroke="#ef4444" stroke-width="2"/>
+                        <circle cx="100" cy="75" r="16" fill="#ef4444"/>
+                        <text x="100" y="79" text-anchor="middle" fill="white" font-size="9" font-weight="bold">中央</text>
+                    </svg>
+                    <div class="w-full grid grid-cols-2 gap-2 mt-2 text-xs text-left">
+                        <div class="bg-white p-2 rounded border border-slate-200">
+                            <span class="font-bold text-btc-600 block">従来の国家通貨</span>
+                            国家・中央銀行のもとでの発行と金融政策
+                        </div>
+                        <div class="bg-white p-2 rounded border border-slate-200">
+                            <span class="font-bold text-pi-600 block">物流（従来）</span>
+                            一社の主幹事がすべてを調整
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-1 flex flex-col items-center justify-center py-2">
+                    <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-md">
+                        <i class="ph-bold ph-arrow-right text-xl hidden md:block"></i>
+                        <i class="ph-bold ph-arrow-down text-xl md:hidden"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-slate-500 mt-1">依存を減らす</span>
+                </div>
+                <div class="md:col-span-5 bg-gradient-to-br from-btc-50/50 via-white to-pi-50/80 rounded-xl p-5 border-2 border-pi-500/40 flex flex-col items-center text-center">
+                    <span class="text-xs font-bold bg-pi-600 text-white px-2.5 py-0.5 rounded-full mb-2">新構造：自律分散・協調型（P2Pメッシュ）</span>
+                    <div class="font-bold text-slate-900 text-sm mb-3">一人の調整者にすべての判断を通さずに拡張できる設計</div>
+                    <svg class="w-48 h-36 my-1" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="50" y1="35" x2="150" y2="35" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="50" y1="35" x2="35" y2="105" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="50" y1="35" x2="100" y2="75" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="150" y1="35" x2="165" y2="105" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="150" y1="35" x2="100" y2="75" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="35" y1="105" x2="100" y2="130" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="35" y1="105" x2="100" y2="75" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="165" y1="105" x2="100" y2="130" stroke="#f59e0b" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="165" y1="105" x2="100" y2="75" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <line x1="100" y1="75" x2="100" y2="130" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.4"/>
+                        <circle cx="50" cy="35" r="12" fill="#2563eb"/>
+                        <path d="M46 35L49 38L55 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="150" cy="35" r="12" fill="#d97706"/>
+                        <path d="M146 35L149 38L155 32" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="100" cy="75" r="12" fill="#2563eb"/>
+                        <path d="M96 75L99 78L105 72" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="35" cy="105" r="12" fill="#d97706"/>
+                        <path d="M31 105L34 108L40 102" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="165" cy="105" r="12" fill="#2563eb"/>
+                        <path d="M161 105L164 108L170 102" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="100" cy="130" r="12" fill="#2563eb"/>
+                        <path d="M96 130L99 133L105 127" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="w-full grid grid-cols-2 gap-2 mt-2 text-xs text-left">
+                        <div class="bg-amber-50/80 p-2 rounded border border-amber-200">
+                            <span class="font-bold text-btc-700 block">ビットコイン</span>
+                            暗号技術＋各ノードの独立検証
+                        </div>
+                        <div class="bg-pi-50 p-2 rounded border border-pi-200">
+                            <span class="font-bold text-pi-700 block">フィジカルインターネット</span>
+                            AIが共通ルールを準備し、各社が判断を照合
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-slate-700">
+                <span class="text-slate-400">拡張の因果：</span>
+                <span class="bg-slate-100 px-2.5 py-1 rounded">1・中央依存を減らす</span>
+                <i class="ph-bold ph-arrow-right text-slate-400"></i>
+                <span class="bg-slate-100 px-2.5 py-1 rounded">2・共通ルールで自律参加</span>
+                <i class="ph-bold ph-arrow-right text-slate-400"></i>
+                <span class="bg-slate-100 px-2.5 py-1 rounded">3・各自が独立に検証</span>
+                <i class="ph-bold ph-arrow-right text-slate-400"></i>
+                <span class="bg-pi-600 text-white px-2.5 py-1 rounded">4・中央の調整能力に依存せず拡張</span>
+            </div>
+        </section>
+
+        <!-- Diagram 2 -->
+        <section class="bg-white rounded-2xl p-6 card-shadow border border-slate-200">
+            <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 text-center">
+                なぜ単純移植できないのか — 責任の扱いに関する決定的な違い
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                <div class="bg-amber-50/40 rounded-xl p-5 border border-amber-200/80 flex flex-col items-center text-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold bg-btc-500 text-white px-2.5 py-0.5 rounded-full mb-2 inline-block">ビットコイン型（デジタル完結）</span>
+                        <div class="font-bold text-slate-800 text-sm mb-2">取引の有効性のみ検証（プロトコルは責任を分配しない）</div>
+                    </div>
+                    <svg class="w-60 h-28 my-1" viewBox="0 0 240 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="54" r="18" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                        <text x="40" y="58" text-anchor="middle" fill="#b45309" font-size="9" font-weight="bold">送信者</text>
+                        <line x1="62" y1="54" x2="176" y2="54" stroke="#f59e0b" stroke-width="3"/>
+                        <polygon points="178,54 169,49 169,59" fill="#f59e0b"/>
+                        <rect x="68" y="30" width="104" height="20" rx="10" fill="#d97706"/>
+                        <text x="120" y="43" text-anchor="middle" fill="white" font-size="8" font-weight="bold">署名・残高OK</text>
+                        <circle cx="200" cy="54" r="18" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                        <text x="200" y="58" text-anchor="middle" fill="#b45309" font-size="9" font-weight="bold">受信者</text>
+                        <text x="120" y="88" text-anchor="middle" fill="#64748b" font-size="8.5" font-weight="bold">有効性のみ検証（責任は対象外）</text>
+                    </svg>
+                    <div class="w-full bg-white p-2.5 rounded-lg border border-amber-200 text-xs text-slate-600">
+                        電子データの移転を扱うため、<strong class="text-slate-800">プロトコルは物理的な破損・遅延の責任を扱わない。</strong>
+                    </div>
+                </div>
+                <div class="bg-pi-50/50 rounded-xl p-5 border-2 border-pi-500/40 flex flex-col items-center text-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold bg-pi-600 text-white px-2.5 py-0.5 rounded-full mb-2 inline-block">AI×形式検証型（物理世界と接続）</span>
+                        <div class="font-bold text-slate-900 text-sm mb-2">企業間で合意した引渡し・責任の条件を検査</div>
+                    </div>
+                    <svg class="w-60 h-28 my-1" viewBox="0 0 240 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="78" y="4" width="84" height="20" rx="10" fill="#e11d48"/>
+                        <text x="120" y="18" text-anchor="middle" fill="white" font-size="8.5" font-weight="bold">責任境界を検査</text>
+                        <line x1="120" y1="24" x2="120" y2="84" stroke="#e11d48" stroke-width="2.5" stroke-dasharray="3 3"/>
+                        <rect x="12" y="30" width="92" height="46" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+                        <text x="58" y="51" text-anchor="middle" fill="#1e3a8a" font-size="11" font-weight="bold">A社</text>
+                        <text x="58" y="66" text-anchor="middle" fill="#2563eb" font-size="8">温度・時刻</text>
+                        <rect x="136" y="30" width="92" height="46" rx="6" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.5"/>
+                        <text x="182" y="51" text-anchor="middle" fill="#312e81" font-size="11" font-weight="bold">B社</text>
+                        <text x="182" y="66" text-anchor="middle" fill="#4338ca" font-size="8">受領・次工程</text>
+                        <text x="120" y="98" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="bold">引渡し条件を実測証拠と照合</text>
+                    </svg>
+                    <div class="w-full bg-white p-2.5 rounded-lg border border-pi-200 text-xs text-slate-700">
+                        現実の貨物・事故を扱うため、<strong class="text-pi-700">引渡しごとの管理責任を機械可読化し、</strong>合意条件と実測証拠に照らして確認する。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table 1 -->
+        <section class="space-y-3">
+            <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-slate-900 text-white text-xs flex items-center justify-center">I</span>
+                社会構造・ネットワーク原理のマッピング
+            </h2>
+            <div class="bg-white rounded-xl card-shadow border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-xs sm:text-sm">
+                            <th class="py-3 px-4 w-1/4 border-r border-slate-800">比較軸</th>
+                            <th class="py-3 px-4 border-r border-slate-800 bg-btc-600/20 text-amber-200"><i class="ph-fill ph-currency-btc text-btc-500 mr-1"></i>ビットコイン</th>
+                            <th class="py-3 px-4 bg-pi-600/30 text-pi-100"><i class="ph-fill ph-package text-pi-400 mr-1"></i>フィジカルインターネット</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-xs sm:text-sm">
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">減らす依存先</td>
+                            <td class="py-3 px-4 text-slate-600">国家・中央銀行（法定通貨）</td>
+                            <td class="py-3 px-4 font-bold text-pi-700 bg-pi-50/30">特定の主幹事による個別の管理・調整</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">従来の制約</td>
+                            <td class="py-3 px-4 text-slate-600">国家の通貨制度／中央集権的管理</td>
+                            <td class="py-3 px-4 font-semibold text-slate-800 bg-pi-50/30">主幹事の管理能力・利害・調整コスト</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">信用の基盤</td>
+                            <td class="py-3 px-4 text-slate-600">暗号技術・共通ルール・分散合意</td>
+                            <td class="py-3 px-4 font-bold text-pi-700 bg-pi-50/30">形式検証・共通ルール・実測証拠・合意</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">参加の仕組み</td>
+                            <td class="py-3 px-4 text-slate-600">中央の許可なく参加</td>
+                            <td class="py-3 px-4 font-semibold text-slate-800 bg-pi-50/30">主幹事の個別調整なしに、共通条件で参加</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">判断の正当性</td>
+                            <td class="py-3 px-4 text-slate-600">各ノードが取引を<strong>独立検証</strong></td>
+                            <td class="py-3 px-4 font-bold text-pi-700 bg-pi-50/30">各社が採用・運用条件を<strong>独立検証</strong></td>
+                        </tr>
+                        <tr class="bg-amber-50/30">
+                            <td class="py-3 px-4 font-bold text-slate-900 bg-slate-100">分散化と責任の扱い</td>
+                            <td class="py-3 px-4 text-slate-600">取引の有効性を検証（<strong>法的責任は対象外</strong>）</td>
+                            <td class="py-3 px-4 font-bold text-rose-700 bg-rose-50/40">各社の<strong>責任境界と履行条件の整合性</strong>まで検証</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-slate-700 bg-slate-50">最大の意義</td>
+                            <td class="py-3 px-4 text-slate-600">国家通貨を前提としない価値移転の基盤</td>
+                            <td class="py-3 px-4 font-bold text-pi-900 bg-pi-100/50">特定企業の能力を上限としない物流協調の基盤</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Table 2 -->
+        <section class="space-y-3">
+            <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-slate-900 text-white text-xs flex items-center justify-center">II</span>
+                技術アーキテクチャのマッピング（7機能の対比）
+            </h2>
+            <div class="bg-white rounded-xl card-shadow border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-xs sm:text-sm">
+                            <th class="py-3 px-4 w-1/4 border-r border-slate-800">機能レイヤー</th>
+                            <th class="py-3 px-4 border-r border-slate-800 bg-btc-600/20 text-amber-200">ビットコイン</th>
+                            <th class="py-3 px-4 bg-pi-600/30 text-pi-100">AI×形式検証</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-xs sm:text-sm">
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">① 共通ルール</td>
+                            <td class="py-2.5 px-4 text-slate-600">コンセンサスルール</td>
+                            <td class="py-2.5 px-4 text-slate-800 bg-pi-50/30 font-medium">参加・採用・責任分担のルール</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">② 検査対象の準備</td>
+                            <td class="py-2.5 px-4 text-slate-600">ウォレットによる取引生成</td>
+                            <td class="py-2.5 px-4 text-pi-700 bg-pi-50/30 font-bold">AIが条件を形式化・維持し、検査用の候補計画を用意</td>
+                        </tr>
+                        <tr class="bg-pi-50/60">
+                            <td class="py-2.5 px-4 font-bold text-pi-900 bg-pi-100/60">③ 独立検証</td>
+                            <td class="py-2.5 px-4 text-slate-700">フルノードが署名・UTXOを検証</td>
+                            <td class="py-2.5 px-4 text-pi-900 font-bold">各社が共通条件に照らして判断を検証。形式手法は選択したモデル特性の検証を支える。</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">④ 合意・状態管理</td>
+                            <td class="py-2.5 px-4 text-slate-600">PoW・ブロックチェーン（二重支払防止）</td>
+                            <td class="py-2.5 px-4 text-slate-800 bg-pi-50/30 font-medium">承認・予約状態、競合解決（二重予約防止）</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">⑤ 実行・確定</td>
+                            <td class="py-2.5 px-4 text-slate-600">送信・ブロック記録・承認</td>
+                            <td class="py-2.5 px-4 text-slate-800 bg-pi-50/30 font-medium">配送・引渡し・管理移転の確認</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">⑥ 結果の検証</td>
+                            <td class="py-2.5 px-4 text-slate-600">ブロックの有効性と承認状態を検証</td>
+                            <td class="py-2.5 px-4 text-pi-700 bg-pi-50/30 font-bold">実測証拠で検証：温度・位置・到着など</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2.5 px-4 font-bold text-slate-700 bg-slate-50">⑦ 参加者の協調</td>
+                            <td class="py-2.5 px-4 text-slate-600">各ノードが独立にルールを適用</td>
+                            <td class="py-2.5 px-4 text-slate-800 bg-pi-50/30 font-medium">各社が自社の条件と判断権を保ちつつ協調</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                <div class="bg-slate-900 text-white px-3.5 py-2.5 rounded-xl flex items-start gap-2.5 text-xs">
+                    <span class="bg-amber-400 text-slate-950 font-extrabold px-1.5 py-0.5 rounded shrink-0 mt-0.5">境界 1</span>
+                    <div><strong>マイニング ≠ AI：</strong>マイニングは取引履歴の安全性を支え、AIは検証される対象（条件・候補計画）を準備・維持する。</div>
+                </div>
+                <div class="bg-slate-900 text-white px-3.5 py-2.5 rounded-xl flex items-start gap-2.5 text-xs">
+                    <span class="bg-sky-400 text-slate-950 font-extrabold px-1.5 py-0.5 rounded shrink-0 mt-0.5">境界 2</span>
+                    <div><strong>合意形成 ≠ 形式検証：</strong>Lean 4などの証明ツールは指定したモデル特性を検査し、合意形成は共有状態の一致を扱う。</div>
+                </div>
+                <div class="bg-slate-900 text-white px-3.5 py-2.5 rounded-xl flex items-start gap-2.5 text-xs">
+                    <span class="bg-rose-400 text-slate-950 font-extrabold px-1.5 py-0.5 rounded shrink-0 mt-0.5">境界 3</span>
+                    <div><strong>形式検証が保証する範囲：</strong>定義された条件との整合性（実測値の真実性や最終的な法的判断は別）。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Table 3 -->
+        <section class="space-y-3">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded bg-slate-900 text-white text-xs flex items-center justify-center">III</span>
+                    主幹事による個別調整の分解と、技術への再配置
+                </h2>
+                <span class="text-xs font-semibold text-slate-500">※ 各社が責任主体のまま、中央の調整業務のみを再配置</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs sm:text-sm">
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">① 各社の条件把握</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-pi-700 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">AIによる条件の形式化</span>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">② 配送候補の調整</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-pi-700 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">AIによる候補の準備</span>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">③ 条件適合の判断</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-pi-700 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">形式的・独立した検証</span>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">④ 重複予約の調整</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-slate-900 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">合意・状態管理</span>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">⑤ 進捗・完了確認</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-slate-900 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">実測証拠と結果検証</span>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-2">
+                    <span class="text-slate-500 line-through">⑥ 事故時の責任明確化</span>
+                    <i class="ph-bold ph-arrow-right text-pi-500 shrink-0"></i>
+                    <span class="font-bold text-slate-900 bg-pi-50 px-2.5 py-1 rounded border border-pi-200">事前条件＋検証履歴</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="bg-slate-900 text-white rounded-xl p-4 text-center shadow-sm">
+            <p class="text-xs sm:text-sm font-bold tracking-wide">
+                <strong>結論：</strong>ビットコインは、<span class="text-amber-400">中央管理者なしに取引を検証する</span>方法を示した。フィジカルインターネットでは、独立した検証の原理を企業間の協調へと拡張することを提案する — <span class="text-pi-300 underline decoration-rose-400 decoration-2">形式検証を土台に、AIがそれを物流の実務で使えるものにする。</span>
+            </p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-200 pt-4 text-[11px] text-slate-400 space-y-2">
+            <div class="text-slate-500">
+                <strong class="text-slate-600">この資料が解説する研究：</strong>
+                <a href="https://github.com/GhostDriftTheory/physical-internet-verified-scalability" target="_blank" rel="noopener" class="text-pi-700 hover:text-pi-900 underline font-semibold">Physical Internet — Verified Scalability（GitHub）</a>
+                <span class="text-slate-400">— 共通基盤への新規参加、経路に依存しない判断、個別接続と共通基盤の構造的な違いを扱う。実際の物流ネットワーク全体の拡張性を、それ単体で証明するものではない。</span>
+            </div>
+            <div class="flex flex-wrap justify-between gap-2 pt-2 border-t border-slate-100">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <strong class="text-slate-500">参考資料：</strong>
+                    <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" rel="noopener" class="hover:text-slate-700 underline">Nakamoto (2008)</a> /
+                    <a href="https://bitcoin.org/en/bitcoin-core/features/validation" target="_blank" rel="noopener" class="hover:text-slate-700 underline">Bitcoin Core Validation</a> /
+                    <a href="https://lean-lang.org/" target="_blank" rel="noopener" class="hover:text-slate-700 underline">Lean 4</a> /
+                    <a href="https://doi.org/10.1007/s12159-011-0049-6" target="_blank" rel="noopener" class="hover:text-slate-700 underline">Montreuil (2011)</a> /
+                    <a href="https://transport.ec.europa.eu/transport-themes/digital-transport-and-logistics-forum-dtlf_en" target="_blank" rel="noopener" class="hover:text-slate-700 underline">EC DTLF</a> /
+                    <a href="https://unece.org/transport/documents/2021/05/standards/convention-contract-international-carriage-goods-road-cmr" target="_blank" rel="noopener" class="hover:text-slate-700 underline">UNECE (CMR)</a>
+                </div>
+                <div class="space-y-0.5 text-right">
+                    <div>※ ビットコインの既存実装（事実）と、計画中のフィジカルインターネット実装（構想）を区別して記載。</div>
+                    <div>※「国家に依存しない」とは、国家による発行・検証を必要としない意味であり、法の適用外という意味ではない。</div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>

@@ -1,4 +1,4 @@
-# From Money Without a State to Logistics Without a Lead Coordinator
+# From Money Without a State to Logistics Without a Lead Coordinator(JP)
 
 **Bitcoin × Physical Internet — a visual explanation of AI and formal verification**
 
